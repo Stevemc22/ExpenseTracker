@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<link rel="icon" href="images/favicon.ico" type="image/ico" />*@
+
+    <title>AppExpenseTracker | @ViewBag.Title</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Vendors/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- NProgress -->
+    <link href="~/Vendors/nprogress/nprogress.css" rel="stylesheet" />
+
+    <link href="~/Vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" />
+
+    <link href="~/Vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- Custom Theme Style -->
+    <link href="~/Content/Alela/css/custom.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css" rel="stylesheet">
+
+    @RenderSection("styles", required: false)
+
+</head>
+<body class="@(User.Identity.IsAuthenticated ? "nav-md" : "nav-sm")">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="@Url.Action("", "Index", "Home")" class="site_title"> <i class="fa fa-credit-card-alt"></i> <span>ExpenseTracker</span> </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {<!-- menu profile quick info -->
+                                        <div class="profile clearfix">
+                                            <div class="profile_pic">
+                                                <img src="~/Content/images/user.png" alt="Imagen de Usuario" class="img-circle profile_img">
+                                            </div>
+                                            <div class="profile_info">
+                                                <span>Buenas tardes</span>
+                                                <h2>@ViewBag.Username</h2>
+                                            </div>
+                                        </div> <!-- /menu profile quick info -->
+                                                        <br /> <!-- sidebar menu -->
+                                                                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                                                                            <div class="menu_section">
+                                                                                <ul class="nav side-menu">
+                                                                                    <li>
+                                                                                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Inicio </a>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <a href="@Url.Action("Index", "Calendar")"><i class="fa fa-calendar"></i> Calendario </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>}
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+        <div class="nav toggle">
+            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+                        <nav class="nav navbar-nav">
+                            <ul class=" navbar-right">
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="true">
+                                        <img src="~/Content/images/user.png" alt="">@ViewBag.Username
+                                    </a>
+                                    <span style="margin-left: 5px;">@DateTime.Now.ToShortDateString()</span>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown" style="margin-top: 5%;">
+                                        <a class="dropdown-item" href="@Url.Action("", "Account", "LogOff")"><i class="fa fa-sign-out pull-right"></i> Cerrar sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>}
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="pull-right">
+            ExpenseTracker - Cenfotec by Steve Montoya
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/Vendors/jquery/jquery.min.js"></script>
+    <script src="~/Vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Vendors/nprogress/nprogress.js"></script>
+
+    <script src="~/Vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+
+    <script src="~/Vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+
+    <!-- Flot -->
+    <script src="~/Vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Vendors/Flot/jquery.flot.resize.js"></script>
+
+    <!-- Flot plugins -->
+    <script src="~/Vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/Vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/Vendors/flot.curvedlines/curvedLines.js"></script>
+
+    <!-- DateJS -->
+    <script src="~/Vendors/DateJS/build/date.js"></script>
+
+    <script src="~/Vendors/moment/min/moment.min.js"></script>
+    <script src="~/Vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script src="~/Content/Alela/js/custom.js"></script>
+
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

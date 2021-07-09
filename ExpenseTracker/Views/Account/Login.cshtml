@@ -1,0 +1,56 @@
+﻿@model ExpenseTracker.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div>
+    <div class="login_wrapper">
+        <div class="">
+            <section class="login_content">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <h1>Inicio de sesión</h1>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div>
+
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                    </div>
+
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Iniciar sesión" class="btn btn-sm btn-default submit" style="width: 78%;">
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">
+                            Usuario nuevo?
+                            @Html.ActionLink("Crear cuenta", "SignUp", "Account", null, new { @class = "to_register" })
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <h1><i class="fa fa-money"></i> Expense Tracker</h1>
+                            <p>©2021 Todos los derechos reservados.</p>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            initialDate: '2021-06-07',
+            locale: 'es',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: '2021-06-01'
+                },
+                {
+                    title: 'Long Event',
+                    start: '2021-06-07',
+                    end: '2021-06-10'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: '2021-06-09T16:00:00'
+                },
+                {
+                    groupId: '999',
+                    title: 'Repeating Event',
+                    start: '2021-06-16T16:00:00'
+                },
+                {
+                    title: 'Conference',
+                    start: '2021-06-11',
+                    end: '2021-06-13'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2021-06-12T10:30:00',
+                    end: '2021-06-12T12:30:00'
+                },
+                {
+                    title: 'Lunch',
+                    start: '2021-06-12T12:00:00'
+                },
+                {
+                    title: 'Meeting',
+                    start: '2021-06-12T14:30:00'
+                },
+                {
+                    title: 'Birthday Party',
+                    start: '2021-06-13T07:00:00'
+                },
+                {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2021-06-28'
+                }
+            ]
+        });
+
+        calendar.render();
+    });
+</script>
+
+<div role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Calendario</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Gastos realizados</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Settings 1</a>
+                                    <a class="dropdown-item" href="#">Settings 2</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <div id='calendar'></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model ExpenseTracker.Models.SignUpModel
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<div>
+    <div class="login_wrapper">
+        <div id="register" class="">
+            <section class="login_content">
+                <form>
+                    <h1>Crear cuenta</h1>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Registrarse" class="btn btn-sm btn-default submit" style="width: 78%;" />
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">
+                            Already a member ?
+                            @Html.ActionLink("Login", "LogIn", "Account", null, new { @class = "to_register" })
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br />
+
+                        <div>
+                            <h1><i class="fa fa-money"></i> Expense Tracker</h1>
+                            <p>©2021 All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
