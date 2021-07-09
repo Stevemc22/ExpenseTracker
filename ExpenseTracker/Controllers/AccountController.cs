@@ -30,7 +30,7 @@ namespace ExpenseTracker.Controllers
                 Console.WriteLine(ex);
             }
 
-            return this.View();
+            return this.View(new LoginModel());
         }
 
         [HttpPost]
