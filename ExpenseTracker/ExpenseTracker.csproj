@@ -1371,7 +1371,6 @@
     <Content Include="Vendors\Flot\examples\series-toggle\index.html" />
     <Content Include="Vendors\Flot\examples\series-types\index.html" />
     <Content Include="Vendors\Flot\examples\shared\jquery-ui\jquery-ui.min.css" />
-    <Content Include="Vendors\Flot\examples\shared\jquery-ui\jquery-ui.min.js" />
     <Content Include="Vendors\Flot\examples\stacking\index.html" />
     <Content Include="Vendors\Flot\examples\symbols\index.html" />
     <Content Include="Vendors\Flot\examples\threshold\index.html" />
