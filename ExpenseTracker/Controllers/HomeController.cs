@@ -18,7 +18,7 @@ namespace ExpenseTracker.Controllers
         {
             ParentModelView data = new ParentModelView();
             data.UserDataModel = getUserData();
-
+            CalculateAmounts(data.UserDataModel);
             ViewBag.Username = User.Identity.Name.Split('|')[0];
             return View(data);
         }
@@ -42,9 +42,17 @@ namespace ExpenseTracker.Controllers
                 return list.Where(x => x.UserEmail == User.Identity.Name.Split('|')[1]).FirstOrDefault();
             } else
             {
-                return new UserDataModel();
+                return null;
             }
             
+        }
+
+        public void CalculateAmounts(UserDataModel model)
+        {
+            var totalIngreso = model.Ingresos.Sum(x => Decimal.Parse(x.Monto));
+            var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto));
+            model.Disponible = (totalIngreso - totalGatos).ToString();
+            model.GastoMes = (Decimal.Parse(model.Disponible) - Decimal.Parse(model.Objetivo)).ToString();
         }
 
         [HttpPost]
@@ -52,10 +60,16 @@ namespace ExpenseTracker.Controllers
         {
             try
             {
-                model.UserDataModel.UserEmail = User.Identity.Name.Split('|')[1];
-                model.UserDataModel.Disponible = "0.00";
-                model.UserDataModel.GastoMes = "0.00";
-                model.UserDataModel.GastoSemana = "0.00";
+                UserDataModel data = getUserData();
+                if(data != null)
+                {
+                    data.Objetivo = model.UserDataModel.Objetivo;
+                    updateUserData(data);
+                } else { 
+                    model.UserDataModel.UserEmail = User.Identity.Name.Split('|')[1];
+                    model.UserDataModel.GastoMes = "0,00";
+                    model.UserDataModel.GastoSemana = "0,00";
+                }
                 addUserData(model.UserDataModel);
             }
             catch (Exception ex)
@@ -70,6 +84,12 @@ namespace ExpenseTracker.Controllers
         {
             PushResponse respone = firebase.Client.Push("UserData/", model);
             model.UserDataId = respone.Result.name;
+            SetResponse setResponse = firebase.Client.Set("UserData/" + model.UserDataId, model);
+            Console.WriteLine(setResponse);
+        }
+
+        private void updateUserData(UserDataModel model)
+        {
             SetResponse setResponse = firebase.Client.Set("UserData/" + model.UserDataId, model);
             Console.WriteLine(setResponse);
         }

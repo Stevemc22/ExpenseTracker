@@ -53,10 +53,6 @@
 
 <script>
     document.getElementById("txtAmount").onblur = function () {
-        this.value = parseFloat(this.value.replace(/,/g, ""))
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("txtAmount").value = this.value.replace(/,/g, "")
+        this.value = parseFloat(this.value).toFixed(2).replace(".", ",");
     }
 </script>

@@ -90,7 +90,7 @@
                             <th scope="row">1</th>
                             <td>@ingreso.Fecha.ToShortDateString()</td>
                             <td>@ingreso.Concepto</td>
-                            <td>@ingreso.Monto</td>
+                            <td>$@ingreso.Monto</td>
                         </tr>
                         }
                     }
@@ -107,7 +107,7 @@
 <div class="col-md-6 col-sm-6  ">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Gastos</h2>
+            <h2>Gastos fijos</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li>
                     <button class="btn btn-sm btn-outline-danger pull-right">Reiniciar</button>
@@ -143,7 +143,7 @@
                             <th scope="row">1</th>
                             <td>@gasto.Fecha.ToShortDateString()</td>
                             <td>@gasto.Concepto</td>
-                            <td>@gasto.Monto</td>
+                            <td>$@gasto.Monto</td>
                         </tr> 
                         }
                      }
@@ -163,11 +163,8 @@
 @Html.Partial("~/Views/Home/PartialViews/AddExpense.cshtml")
 
 <script>
+
     document.getElementById("txtObjectiveAmount").onblur = function () {
-        this.value = parseFloat(this.value.replace(/,/g, ""))
-            .toFixed(2)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        document.getElementById("txtObjectiveAmount").value = this.value.replace(/,/g, "")
+        this.value = parseFloat(this.value).toFixed(2).replace(".",",");
     };
 </script>
