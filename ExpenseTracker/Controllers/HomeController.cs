@@ -87,5 +87,19 @@ namespace ExpenseTracker.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult AddExpense(ParentModelView model)
+        {
+            UserDataModel userData = getUserData();
+            if (userData.Gastos == null)
+                userData.Gastos = new List<GastosModel>();
+
+            userData.Gastos.Add(model.GastosModel);
+            SetResponse setResponse = firebase.Client.Set("UserData/" + userData.UserDataId, userData);
+            Console.WriteLine(setResponse);
+
+            return RedirectToAction("Index");
+        }
     }
 }

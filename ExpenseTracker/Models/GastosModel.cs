@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ExpenseTracker.Models
 {
-    public class GastosModel
+    public class GastosModel : ParentModelView
     {
         [Required]
         [DataType(DataType.Date)]

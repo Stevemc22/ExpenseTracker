@@ -9,5 +9,6 @@ namespace ExpenseTracker.Models
     {
         public UserDataModel UserDataModel { get; set; }
         public IngresosModel IngresosModel { get; set; }
+        public GastosModel GastosModel { get; set; }
     }
 }

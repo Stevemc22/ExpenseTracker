@@ -1988,6 +1988,7 @@
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Home\PartialViews\AddIncome.cshtml" />
+    <Content Include="Views\Home\PartialViews\AddExpense.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Vendors\moment\moment.d.ts" />
