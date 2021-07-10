@@ -12,7 +12,7 @@ namespace ExpenseTracker.Controllers
 {
     public class AccountController : Controller
     {
-        private static string ApiKey = Environment.GetEnvironmentVariable("Firebase:Api");
+        private static string ApiKey = "AIzaSyDjAPaIGlAqlSVXClf0NZyuxflcAu7zz0E";
 
         [AllowAnonymous]
         [HttpGet]
@@ -67,7 +67,7 @@ namespace ExpenseTracker.Controllers
 
         public ActionResult SignUp()
         {
-            return View();
+            return View(new SignUpModel());
         }
 
         [HttpPost]
@@ -86,7 +86,7 @@ namespace ExpenseTracker.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
 
-            return View();
+            return View(new SignUpModel());
         }
 
         private void SignInUser(string email, string displayName, string token, bool isPersistent)

@@ -8,7 +8,8 @@
     <div class="login_wrapper">
         <div id="register" class="">
             <section class="login_content">
-                <form>
+                @using (Html.BeginForm("SignUp", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+                {
                     <h1>Crear cuenta</h1>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -45,7 +46,7 @@
                             <p>©2021 All Rights Reserved.</p>
                         </div>
                     </div>
-                </form>
+                }
             </section>
         </div>
     </div>

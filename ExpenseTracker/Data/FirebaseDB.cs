@@ -8,8 +8,8 @@ namespace ExpenseTracker.Data
     {
         IFirebaseConfig config = new FirebaseConfig
         {
-            AuthSecret = Environment.GetEnvironmentVariable("Firebase:Auth"),
-            BasePath = Environment.GetEnvironmentVariable("Firebase:Base")
+            AuthSecret = "OzHkf7qdEa6jsvrYcKOyt3vbPAbgIrs8ZPaBJS72",
+            BasePath = "https://appexpensetracker-cenfo-default-rtdb.firebaseio.com/"
         };
 
         public IFirebaseClient Client { get; set; }
