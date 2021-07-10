@@ -12,7 +12,7 @@ namespace ExpenseTracker.Controllers
 {
     public class AccountController : Controller
     {
-        private static string ApiKey = "";
+        private static string ApiKey = Environment.GetEnvironmentVariable("Firebase:Api");
 
         [AllowAnonymous]
         [HttpGet]

@@ -1,5 +1,6 @@
 ﻿using FireSharp.Config;
 using FireSharp.Interfaces;
+using System;
 
 namespace ExpenseTracker.Data
 {
@@ -7,8 +8,8 @@ namespace ExpenseTracker.Data
     {
         IFirebaseConfig config = new FirebaseConfig
         {
-            AuthSecret = "",
-            BasePath = ""
+            AuthSecret = Environment.GetEnvironmentVariable("Firebase:Auth"),
+            BasePath = Environment.GetEnvironmentVariable("Firebase:Base")
         };
 
         public IFirebaseClient Client { get; set; }
