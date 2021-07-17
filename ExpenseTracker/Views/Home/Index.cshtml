@@ -4,9 +4,14 @@
 
 <div class="clearfix"></div>
 <div class="row">
-    <div class="col-md-6 col-sm-12 ">
+    <div class="col-md-6 col-sm-12">
         <div class="x_panel">
-            @using (Html.BeginForm("AddUpdateUserData", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"], @class = "form-horizontal form-label-left" }))
+            @using (Ajax.BeginForm("AddUpdateUserData", "Home", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "success(data); return false",
+                OnBegin = "beforeStart()"
+            }, new { @class = "form-horizontal form-label-left" } ))
             {
                 <div class="x_title">
                     <h2>Objetivo de ahorro</h2>
@@ -23,6 +28,13 @@
              }
         </div>
     </div>
+    <button style="display: none;" id="btnSuccess" onclick="new PNotify({
+                title: 'Éxito',
+                text: 'Los datos han sido guardados correctamente',
+                type: 'success',
+                styling: 'bootstrap3'
+            });">Success
+    </button>
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
         <div class="tile-stats">
             <div class="icon">
@@ -51,109 +63,109 @@
     </div>
 </div>
 
-<div class="col-md-6 col-sm-6  ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>Ingresos fijos</h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <button class="btn btn-sm btn-outline-danger pull-right">Reiniciar</button>
-                </li>
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li>
-                    <a href="#" style="color: #73879C;" data-toggle="modal" data-target="#ingresosModal"><i class="fa fa-plus"></i></a>
-                </li>
-                <li>
-                    <a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Fecha</th>
-                        <th>Concepto</th>
-                        <th>Monto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.UserDataModel.Ingresos.Count != 0)
-                    {
-                        foreach (var ingreso in Model.UserDataModel.Ingresos)
-                        {
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Ingresos fijos</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" style="color: #73879C;" data-toggle="modal" data-target="#ingresosModal"><i class="fa fa-plus"></i></a>
+                    </li>
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-refresh"></i></a>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>@ingreso.Fecha.ToShortDateString()</td>
-                            <td>@ingreso.Concepto</td>
-                            <td>$@ingreso.Monto</td>
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Concepto</th>
+                            <th>Monto</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.UserDataModel.Ingresos.Count != 0)
+                        {
+                            foreach (var ingreso in Model.UserDataModel.Ingresos)
+                            {
+            <tr>
+                <th scope="row">1</th>
+                <td>@ingreso.Fecha.ToShortDateString()</td>
+                <td>@ingreso.Concepto</td>
+                <td>$@ingreso.Monto</td>
+            </tr> }
                         }
-                    }
-                    else
-                    {
-                        <p>Presione el botón + para añadir un nuevo ingreso</p>
-                    }
-                </tbody>
-            </table>
+                        else
+                        {
+            <p>Presione el botón + para añadir un nuevo ingreso</p>}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-6 col-sm-6  ">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>Gastos fijos</h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <button class="btn btn-sm btn-outline-danger pull-right">Reiniciar</button>
-                </li>
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-                <li>
-                    <a href="#" style="color: #73879C;" data-toggle="modal" data-target="#gastosModal"><i class="fa fa-plus"></i></a>
-                </li>
-                <li>
-                    <a class="close-link"><i class="fa fa-close"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Fecha</th>
-                        <th>Concepto</th>
-                        <th>Monto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.UserDataModel.Gastos.Count != 0)
-                    {
-                        foreach (var gasto in Model.UserDataModel.Gastos)
-                        {
+    <div class="col-md-6 col-sm-6  ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Gastos fijos</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" style="color: #73879C;" data-toggle="modal" data-target="#gastosModal"><i class="fa fa-plus"></i></a>
+                    </li>
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-refresh"></i></a>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>@gasto.Fecha.ToShortDateString()</td>
-                            <td>@gasto.Concepto</td>
-                            <td>$@gasto.Monto</td>
-                        </tr> 
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Concepto</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.UserDataModel.Gastos.Count != 0)
+                        {
+                            foreach (var gasto in Model.UserDataModel.Gastos)
+                            {
+            <tr>
+                <th scope="row">1</th>
+                <td>@gasto.Fecha.ToShortDateString()</td>
+                <td>@gasto.Concepto</td>
+                <td>$@gasto.Monto</td>
+            </tr>
+ }
                         }
-                     }
-                      else
-                      {
-                        <p>Presione el botón + para añadir un nuevo gasto</p>
-                      }
-                </tbody>
-            </table>
+                        else
+                        {
+            <p>Presione el botón + para añadir un nuevo gasto</p>}
+                    </tbody>
+                </table>
 
+            </div>
         </div>
     </div>
 </div>
@@ -163,8 +175,16 @@
 @Html.Partial("~/Views/Home/PartialViews/AddExpense.cshtml")
 
 <script>
-
     document.getElementById("txtObjectiveAmount").onblur = function () {
         this.value = parseFloat(this.value).toFixed(2).replace(".",",");
     };
+</script>
+
+<script>
+    function success(data) {
+        console.log(data);
+    }
+    function beforeStart() {
+        event.preventDefault();
+    }
 </script>

@@ -1801,6 +1801,25 @@
     <Content Include="Vendors\moment\templates\test-header.js" />
     <Content Include="Vendors\nprogress\nprogress.css" />
     <Content Include="Vendors\nprogress\nprogress.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.animate.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.brighttheme.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.buttons.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.buttons.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.callbacks.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.confirm.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.desktop.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.history.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.history.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.material.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.mobile.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.mobile.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.nonblock.css" />
+    <Content Include="Vendors\pnotify\dist\pnotify.nonblock.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.reference.js" />
+    <Content Include="Vendors\pnotify\dist\pnotify.tooltip.js" />
+    <Content Include="Vendors\pnotify\libtests\browserify\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1989,6 +2008,11 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Home\PartialViews\AddIncome.cshtml" />
     <Content Include="Views\Home\PartialViews\AddExpense.cshtml" />
+    <Content Include="Vendors\pnotify\.bower.json" />
+    <Content Include="Vendors\pnotify\.gitignore" />
+    <Content Include="Vendors\pnotify\bower.json" />
+    <Content Include="Vendors\pnotify\COPYING" />
+    <Content Include="Vendors\pnotify\README.md" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Vendors\moment\moment.d.ts" />

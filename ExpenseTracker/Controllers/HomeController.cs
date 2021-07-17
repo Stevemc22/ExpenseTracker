@@ -53,6 +53,7 @@ namespace ExpenseTracker.Controllers
             var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto));
             model.Disponible = (totalIngreso - totalGatos).ToString();
             model.GastoMes = (Decimal.Parse(model.Disponible) - Decimal.Parse(model.Objetivo)).ToString();
+            model.GastoSemana = (Decimal.Parse(model.GastoMes) / 4).ToString();
         }
 
         [HttpPost]
@@ -67,10 +68,8 @@ namespace ExpenseTracker.Controllers
                     updateUserData(data);
                 } else { 
                     model.UserDataModel.UserEmail = User.Identity.Name.Split('|')[1];
-                    model.UserDataModel.GastoMes = "0,00";
-                    model.UserDataModel.GastoSemana = "0,00";
+                    addUserData(model.UserDataModel);
                 }
-                addUserData(model.UserDataModel);
             }
             catch (Exception ex)
             {
