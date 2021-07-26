@@ -50,12 +50,11 @@ namespace ExpenseTracker.Controllers
 
         public void CalculateAmounts(UserDataModel model)
         {
-            var culture = new CultureInfo("es-CR");
-            var totalIngreso = model.Ingresos.Sum(x => Decimal.Parse(x.Monto, culture));
-            var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto, culture));
+            var totalIngreso = model.Ingresos.Sum(x => Decimal.Parse(x.Monto));
+            var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto));
             model.Disponible = (totalIngreso - totalGatos).ToString();
-            model.GastoMes = (Decimal.Parse(model.Disponible, culture) - Decimal.Parse(model.Objetivo, culture)).ToString();
-            model.GastoSemana = (Decimal.Parse(model.GastoMes, culture) / 4).ToString();
+            model.GastoMes = (Decimal.Parse(model.Disponible) - Decimal.Parse(model.Objetivo)).ToString();
+            model.GastoSemana = (Decimal.Parse(model.GastoMes) / 4).ToString();
         }
 
         [HttpPost]
