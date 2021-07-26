@@ -49,8 +49,9 @@ namespace ExpenseTracker.Controllers
 
         public void CalculateAmounts(UserDataModel model)
         {
-            var totalIngreso = model.Ingresos.Sum(x => Decimal.Parse(x.Monto));
-            var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto));
+            var numberFormatInfo = new System.Globalization.NumberFormatInfo { NumberDecimalSeparator = "," };
+            var totalIngreso = model.Ingresos.Sum(x => Decimal.Parse(x.Monto, numberFormatInfo));
+            var totalGatos = model.Gastos.Sum(x => Decimal.Parse(x.Monto, numberFormatInfo));
             model.Disponible = (totalIngreso - totalGatos).ToString();
             model.GastoMes = (Decimal.Parse(model.Disponible) - Decimal.Parse(model.Objetivo)).ToString();
             model.GastoSemana = (Decimal.Parse(model.GastoMes) / 4).ToString();
