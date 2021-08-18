@@ -12,5 +12,6 @@ namespace ExpenseTracker.Models
         public string GastoSemana { get; set; }
         public List<IngresosModel> Ingresos { get; set; }
         public List<GastosModel> Gastos { get; set; }
+        public List<EventoModel> Eventos { get; set; }
     }
 }

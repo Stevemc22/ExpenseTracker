@@ -55,6 +55,8 @@ namespace ExpenseTracker.Controllers
             model.Disponible = (totalIngreso - totalGatos).ToString();
             model.GastoMes = (Decimal.Parse(model.Disponible) - Decimal.Parse(model.Objetivo)).ToString();
             model.GastoSemana = (Decimal.Parse(model.GastoMes) / 4).ToString();
+            if (Session["gastoMes"] == null)
+                System.Web.HttpContext.Current.Session["gastoMes"] = model.GastoMes;
         }
 
         [HttpPost]

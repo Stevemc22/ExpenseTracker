@@ -296,6 +296,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\EventoModel.cs" />
     <Compile Include="Models\GastosModel.cs" />
     <Compile Include="Models\IngresosModel.cs" />
     <Compile Include="Data\FirebaseDB.cs" />
@@ -303,6 +304,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ParentEventModel.cs" />
     <Compile Include="Models\ParentModelView.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Models\UserDataModel.cs" />
@@ -2013,6 +2015,7 @@
     <Content Include="Vendors\pnotify\bower.json" />
     <Content Include="Vendors\pnotify\COPYING" />
     <Content Include="Vendors\pnotify\README.md" />
+    <Content Include="Views\Home\PartialViews\AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Vendors\moment\moment.d.ts" />

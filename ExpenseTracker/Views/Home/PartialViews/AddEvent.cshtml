@@ -1,8 +1,8 @@
-﻿@model ExpenseTracker.Models.ParentModelView
+﻿@model ExpenseTracker.Models.EventoModel
 
-<div class="modal fade" id="gastosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eventosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        @using (Html.BeginForm("AddExpense", "Home", new { @class = "form-horizontal form-label-left" }))
+        @using (Html.BeginForm("AddEvent", "Calendar", new { @class = "form-horizontal form-label-left" }))
         {
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,30 +14,28 @@
                 <div class="modal-body">
 
                     <div class="form-horizontal">
-                        <h4>Ingresos</h4>
-                        <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            @Html.LabelFor(model => model.GastosModel.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.GastosModel.Fecha, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.GastosModel.Fecha, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.GastosModel.Concepto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.start, htmlAttributes: new { @class = "date-picker control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.GastosModel.Concepto, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.GastosModel.Concepto, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.start, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.start, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.GastosModel.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.GastosModel.Monto, new { htmlAttributes = new { @class = "form-control", id = "txtAmountExpense" } })
-                                @Html.ValidationMessageFor(model => model.GastosModel.Monto, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control", id = "txtAmountExpense" } })
+                                @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -53,8 +51,7 @@
 
 <script>
     document.getElementById("txtAmountExpense").onblur = function () {
-
-        if (this.value != "")
+        if(this.value != "")
             this.value = parseFloat(this.value).toFixed(2);
     }
 </script>
